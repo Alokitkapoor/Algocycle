@@ -1,0 +1,247 @@
+/* this is bootstrap */
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+body {
+
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+
+  background: 
+    /* Grid overlay: subtle grey lines */
+    repeating-linear-gradient(
+      0deg,
+      rgba(200,200,200,0.25),
+      rgba(200,200,200,0.25) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(200,200,200,0.25),
+      rgba(200,200,200,0.25) 1px,
+      transparent 1px,
+      transparent 20px
+    ),
+
+
+    /* Original radial gradients */
+    radial-gradient(circle at top right, rgba(255, 255, 150, 0.4) 0%, transparent 70%),  
+    radial-gradient(circle at bottom left, rgba(200, 50, 200, 0.6) 0%, transparent 65%), 
+    radial-gradient(circle at bottom right, rgba(50, 200, 100, 0.35) 0%, transparent 70%), 
+
+    linear-gradient(
+      135deg,
+      #0c1925 0%,   
+      #142c3f 25%,  
+      #22404a 50%,  
+      #234452 75%,  
+      #22345e 100%  
+    );
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-blend-mode: overlay;
+  color: #fff;
+
+
+}
+
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999; 
+}
+
+.custom-navbar {
+
+  background: rgba(0, 0, 0);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.2rem 0.2rem;
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  margin-left: 2%;
+}
+
+.dropdown-menu {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.navbar-content {
+  background: rgba(75, 108, 183, 0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+  border-radius: 5px;
+  padding: 0.2rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.navbar-brand.no-hover {
+  font-size: 1.4rem;
+  color: #fff;
+  margin-left: 1rem;
+  cursor: default; /* disable pointer */
+}
+
+.btn-primary, .btn-light, #modeToggle {
+  font-size: 0.85rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 0.5rem;
+}
+
+.btn-primary {
+  background-color: #203055;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #3a5296;
+}
+
+.btn-light {
+  background-color: #fff;
+  color: #4b6cb7;
+  font-weight: 600;
+  border: 1px solid #fff;
+}
+
+.btn-light:hover {
+  background-color: #f0f0f0;
+}
+
+#modeToggle {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  color: #fff;
+}
+
+#modeToggle:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Day/Night Modes */
+body.light-mode {
+  background: linear-gradient(135deg, #0f2027 0%, #203a43 100%);
+  color: #fff;
+}
+
+body.dark-mode {
+  background: linear-gradient(135deg, #1b1b1b 0%, #2c2c2c 100%);
+  color: #fff;
+}
+
+.hero-section {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-logo {
+  width: 15vw; 
+  margin-top: 15%;                 /* responsive size */
+  height: auto;
+  filter: drop-shadow(0 0 25px rgba(0, 255, 255, 0.9)); /* initial glow */
+  animation: pulse 3.5s infinite ease-in-out;
+}
+
+
+/* Pulsing neon animation */
+@keyframes pulse {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.6))
+            drop-shadow(0 0 10px rgba(0, 255, 255, 0.4));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 7px rgb(71, 222, 222))
+            drop-shadow(0 0 10px rgba(75, 232, 232, 0.8));
+    transform: scale(1.07);
+  }
+  100% {
+    filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.6))
+            drop-shadow(0 0 10px rgba(0, 255, 255, 0.4));
+    transform: scale(1);
+  }
+}
+
+
+/* Hero text overlay */
+.hero-text {
+  position: relative;
+  z-index: 5;  /* above the logo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+}
+
+/* Main hero line */
+.hero-title {
+  font-family: monospace;
+  font-size: 5.83vw;  /* responsive */
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-shadow: 2px 0 10px rgba(0, 0, 0, 0.6); /* subtle white glow from left */
+
+}
+
+/* Subtitle */
+.hero-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.3vw; /* responsive */
+  color: #e0e0e0;
+  text-align: center;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Buttons container */
+.hero-buttons a.btn {
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Primary button hover */
+.hero-buttons .btn-primary:hover {
+  background-color: #3a5296;
+  color: #fff;
+}
+
+/* Light button hover */
+.hero-buttons .btn-light:hover {
+  background-color: #f0f0f0;
+  color: #4b6cb7;
+}
+
