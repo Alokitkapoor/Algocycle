@@ -17,6 +17,16 @@
       <div class="container-fluid navbar-content d-flex justify-content-between align-items-center">
         <!-- Brand -->
         <span class="navbar-brand fw-bold">AlgoCycle</span>
+        
+        <!-- Center Search Bar -->
+        <div class="d-none d-lg-flex flex-grow-1 justify-content-center">
+          <div class="glass-search d-flex">
+            <input type="text" class="search-input" placeholder="Search">
+            <button class="search-btn"><i class="bi bi-search"></i></button>
+          </div>
+        </div>
+
+
 
         <!-- Right side -->
         <div class="d-flex align-items-center gap-2">
@@ -31,13 +41,13 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end bg-dark text-light" aria-labelledby="navMenu">
               <li><a class="dropdown-item text-light" href="#" id="signInMobile" >Sign In</a></li>
-              <li><a class="dropdown-item text-light" href="#">Login</a></li>
+              <li><a class="dropdown-item text-light" href="#" id="lm">Login</a></li>
             </ul>
           </div>
 
           <div class="d-none d-lg-flex gap-2">
             <a class="btn btn-primary fw-bold" href="#" id="signInNav">Sign In</a>
-            <a class="btn btn-light text-primary fw-bold" href="#">Login</a>
+            <a class="btn btn-light text-primary fw-bold" href="#" id="ln">Login</a>
           </div>
         </div>
       </div>
@@ -56,7 +66,7 @@
         <br>
         <div class="hero-buttons mt-4">
           <a href="#" class="btn btn-primary btn-lg me-3" id="signInHero">Sign In to Continue</a>
-          <a href="#" class="btn btn-light btn-lg text-primary">Login</a>
+          <a href="#" class="btn btn-light btn-lg text-primary" id="lh">Login</a>
         </div>
       </div>
 
@@ -81,6 +91,23 @@
         </form>
       </div>
     </div>
+
+    <!-- Login Overlay ki html (same classes he hain sign in jaise ) -->
+    <div id="oy" class="overlay">
+      <div class="overlay-content">
+        <span class="close-btn" id="coy">&times;</span>
+        <div class="icon-container">
+          <img src="./connection.png" alt="icon" class="blip-icon">
+        </div>
+        <h2>Login</h2>
+        <form class="signin-form">
+          <input type="text" placeholder="Username" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+      </div>
+    </div>
+
 
 
     <!-- Local Bootstrap JS -->

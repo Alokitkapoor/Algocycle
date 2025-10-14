@@ -31,13 +31,13 @@ body {
 
     /* Original radial gradients */
     radial-gradient(circle at top right, rgba(255, 255, 150, 0.4) 0%, transparent 70%),  
-    radial-gradient(circle at bottom left, rgba(200, 50, 200, 0.6) 0%, transparent 65%), 
-    radial-gradient(circle at bottom right, rgba(50, 200, 100, 0.35) 0%, transparent 70%), 
+    radial-gradient(circle at bottom left, rgba(200, 50, 200, 0.49) 0%, transparent 65%), 
+    radial-gradient(circle at bottom right, rgba(50, 200, 100, 0.645) 0%, transparent 70%), 
 
     linear-gradient(
       135deg,
-      #0c1925 0%,   
-      #142c3f 25%,  
+      #0b1723 0%,   
+      #142a3e 25%,  
       #22404a 50%,  
       #234452 75%,  
       #22345e 100%  
@@ -245,7 +245,7 @@ body.dark-mode {
   color: #4b6cb7;
 }
 
-/* ---- overlay ---- */
+/* ----------- overlay ----------- */
 
 .overlay {
   position: fixed;
@@ -253,32 +253,49 @@ body.dark-mode {
   left: 0;
   width: 100%;
   height: 100%;
+  display: flex;
   /* background: rgba(10, 20, 50, 0.3); */
   backdrop-filter: blur(7px);
-  display: none;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+
+  /* the transistional in and out */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; 
+  transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
 /* When active */
 .overlay.active {
   display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto; /* enable interaction when visible */
 }
 
 /* Overlay content box */
 .overlay-content {
   position: relative;
-  background: #081734; /* dark blue */
-  padding: 3rem 3rem;
-  padding-bottom: 4rem;
+  background: #081734;
+  padding: 3rem 3rem 4rem;
   border-radius: 1rem;
   text-align: center;
   color: white;
   width: 90%;
   max-width: 400px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.324);
+  transform: translateY(-20px);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
 }
+
+.overlay.active .overlay-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 
 .overlay-content h2 {
   font-size: 4vh;
@@ -340,3 +357,44 @@ body.dark-mode {
   background: #0090CC;
 }
 
+.glass-search {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(10px);           
+  border-radius: 50px 50px 50px 50px;         
+  overflow: hidden;
+  width: 300px;                         
+  height: 35px;                         
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.693);
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  color: #fff;
+  padding: 0 15px;
+  flex: 1;
+  height: 100%;
+  font-size: 1rem;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search-btn {
+  border: none;
+  background: #ffaa00; /* neon accent */
+  color: #000000;
+  padding: 0 15px;
+  height: 100%;
+  border-radius: 0 50px 50px 0; /* make button semi-rounded */
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search-btn:hover {
+  background: #ffaa00;
+  color: #fff;
+}
