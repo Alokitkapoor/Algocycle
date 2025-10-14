@@ -15,15 +15,15 @@ body {
     /* Grid overlay: subtle grey lines */
     repeating-linear-gradient(
       0deg,
-      rgba(200,200,200,0.25),
-      rgba(200,200,200,0.25) 1px,
+      rgba(200, 200, 200, 0.4),
+      rgba(200, 200, 200, 0.4) 1px,
       transparent 1px,
       transparent 20px
     ),
     repeating-linear-gradient(
       90deg,
-      rgba(200,200,200,0.25),
-      rgba(200,200,200,0.25) 1px,
+      rgba(200, 200, 200, 0.4),
+      rgba(200, 200, 200, 0.4) 1px,
       transparent 1px,
       transparent 20px
     ),
@@ -243,5 +243,100 @@ body.dark-mode {
 .hero-buttons .btn-light:hover {
   background-color: #f0f0f0;
   color: #4b6cb7;
+}
+
+/* ---- overlay ---- */
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: rgba(10, 20, 50, 0.3); */
+  backdrop-filter: blur(7px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* When active */
+.overlay.active {
+  display: flex;
+}
+
+/* Overlay content box */
+.overlay-content {
+  position: relative;
+  background: #081734; /* dark blue */
+  padding: 3rem 3rem;
+  padding-bottom: 4rem;
+  border-radius: 1rem;
+  text-align: center;
+  color: white;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.324);
+}
+
+.overlay-content h2 {
+  font-size: 4vh;
+  font-family: monospace;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white;
+  transition: 0.3s;
+}
+.close-btn:hover {
+  color: #00BFFF;
+}
+
+/* Icon styling */
+.icon-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.blip-icon {
+  width: 50px;
+  animation: blip 3s infinite ease-in-out;
+}
+@keyframes blip {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Form styling */
+.signin-form input {
+  width: 100%;
+  margin: 0.8rem 0;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 0.5rem;
+  outline: none;
+  font-size: 1rem;
+}
+
+.signin-form .btn {
+  width: 40%;
+  background: #00BFFF;
+  border: none;
+  color: white;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.signin-form .btn:hover {
+  background: #0090CC;
 }
 
