@@ -14,7 +14,8 @@ const signInButtons = [
 signInButtons.forEach(btn => {
   if (btn) {
     btn.addEventListener('click', (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
+        //  stops default browser behaviour for that event 
         // check the flag after the click has happended
         if(!flag){
             flag = true;
@@ -44,7 +45,7 @@ const loginbuttons = [
 loginbuttons.forEach(btn => {
     if (btn) {
         btn.addEventListener('click', (e) => {
-            e.preventDefault();
+            e.preventDefault(); 
             if(!flag){
                 flag = true;
                 oy.classList.add('active');
