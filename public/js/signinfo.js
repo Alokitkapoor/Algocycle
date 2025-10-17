@@ -1,4 +1,4 @@
-// This is signin logic
+// This is sign-in local storage logic 
 
 const s_form = document.querySelector("#overlay .signin-form");
  
