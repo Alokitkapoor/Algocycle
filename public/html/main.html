@@ -1,13 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algocycle Dashboard</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
 </head>
 <body>
 
-    <h1>YOU REACHED THE MAIN PAGE</h1>
-    
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark algocycle-navbar px-4">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="../css/icon.png" alt="Algocycle Icon" class="algocycle-icon me-2" style="height: 6vh; margin-left: 3vh; padding: 0.5vh;">
+      Algocycle
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav align-items-center">
+        <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Create</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Complete</a></li>
+
+        <!-- Custom User Menu -->
+        <li class="nav-item position-relative">
+          <img src="../css/user.png" alt="User Icon" class="algocycle-icon me-2 user-icon" style="height: 4vh; cursor: pointer;">
+          
+          <!-- Hidden menu -->
+          <div class="user-menu position-absolute" id="userMenu">
+            <p id="menuUsername">User</p>
+            <a href="#" id="logoutBtn">Logout</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <script src="path/to/bootstrap.bundle.min.js"></script>
+  <script>
+    // Set username from localStorage
+    const username = localStorage.getItem('username') || 'User';
+    document.getElementById('menuUsername').textContent = username;
+
+    // Toggle user menu
+    const userIcon = document.querySelector('.user-icon');
+    const userMenu = document.getElementById('userMenu');
+
+    userIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      userMenu.classList.toggle('show');
+    });
+
+    // Close menu if click outside
+    document.addEventListener('click', () => {
+      userMenu.classList.remove('show');
+    });
+  </script>
+
 </body>
 </html>

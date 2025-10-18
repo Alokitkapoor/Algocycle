@@ -1,0 +1,78 @@
+/* this is bootstrap */
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
+/* Body background */
+body {
+  background-color: #1f1f1f; /* Dark background for entire page */
+  color: #e0e0e0; /* Light grey text */
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+}
+
+/* Navbar */
+.algocycle-navbar {
+  background-color: #181818; /* Dark background like my theme */
+  color: #e0e0e0; /* Light grey text */
+  font-weight: 500;
+}
+
+.algocycle-navbar .nav-link {
+  color: #cccccc;
+  margin-right: 1rem;
+}
+
+.algocycle-navbar .nav-link:hover {
+  color: #ffffff;
+}
+
+.algocycle-navbar .navbar-brand {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.algocycle-navbar .dropdown-menu {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
+.algocycle-navbar .dropdown-item {
+  color: #e0e0e0;
+}
+
+.algocycle-navbar .dropdown-item:hover {
+  background-color: #4a4a4a;
+  color: #ffffff;
+}
+
+/* User Menu Styling */
+.user-menu {
+  display: none;
+  background-color: #2a2a2a;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  top: 60px; /* below the navbar */
+  right: 0;
+  min-width: 150px;
+  z-index: 1000;
+}
+
+.user-menu p, .user-menu a {
+  margin: 0.3rem 0;
+  color: #ffffff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.user-menu a:hover {
+  color: #4a90e2;
+}
+
+.user-menu.show {
+  display: block;
+}
