@@ -39,26 +39,106 @@
     </div>
   </nav>
 
-  <script src="path/to/bootstrap.bundle.min.js"></script>
+  <!-- Sidebar Toggle Button -->
+  <button class="btn btn-primary ms-3 mt-3" id="toggleSidebar">
+    <img src="../css/sidebar.png" alt="icon" class="tg-sbr">
+  </button>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="bg-dark text-white p-4 position-fixed top-0 start-0 vh-100" style="width: 200px; transform: translateX(-100%); transition: transform 0.3s ease; border-right: 1px solid rgba(255, 255, 255, 0.15);">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h5 class="m-0">Menu</h5>
+      <button class="btn btn-sm btn-light" id="closeSidebar">
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Home</a></li>
+      <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Profile</a></li>
+      <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Settings</a></li>
+      <li class="nav-item mb-2"><a href="#" class="nav-link text-white">Logout</a></li>
+    </ul>
+  </div>
+
+  <div class="dash-container" style="margin-top: -6vh; margin-left: 100px; margin-right: 100px; height: 200vh; display: flex; flex-direction: row;">
+    <!-- left half dashboard-->
+    <div class="left-dash" style="display: flex; flex-direction: column; width: 70%;" >
+      <div class="welcome" style="display: flex; flex-direction: row;">
+        <img class="hello-icon" src="../css/hello.png">
+        
+        <div class="greet">
+          <h3>Welcome back, <span id="fetched">(fetch name from local storage)</span>!</h3>
+          <p style="font-size: 1.1vw;"> A few tasks need your attention, get them done before time slips away.</p>
+        </div>
+        
+      </div>
+      <!-- the seperator is here  -->
+
+      <div class="seperator" style="display: flex; flex-direction: row;">
+        <img class="sep-icon" src="../css/seperator.png">
+        <p>Cycle through revisions, boost your <span id="ret">retention</span> </p>
+      </div>
+
+      <div class="c-head" style="background-color: #324059;">
+        <p>Create task</p>
+      </div>
+
+      <!-- create section  -->
+
+      <div class="create-task-section">
+        
+        <div class="task-header">
+          <img style="height: 3vw; width: 3vw;" src="../css/task.png">
+          <p>Make the task that you want to revisit, add flexible spaces before visits.Build for long lasting memorization of concepts</p>
+          <button id="toggleTaskForm"> Create Task</button>
+        </div>
+
+        <div class="task-form" id="taskForm">
+          <input type="text" id="taskTitle" placeholder="Task Title">
+          <input type="text" id="taskNotes" placeholder="Notes (optional)">
+          <input type="datetime-local" id="taskDeadline">
+          <button id="addTaskBtn">Add Task</button>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- right half dashboard-->
+    <div class="right-dash" style="width: 30%;">
+      <div class="stack">
+
+      </div>
+    </div>
+
+  </div>
+  
+  <script src="../js/fetchingName.js"></script>
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/sidebar.js"></script>
+  <script src="../js/backland.js"></script>
+
   <script>
-    // Set username from localStorage
-    const username = localStorage.getItem('username') || 'User';
-    document.getElementById('menuUsername').textContent = username;
+    const createBtn = document.querySelector('.task-header button');
+    const taskForm = document.querySelector('.task-form');
+    const addTaskBtn = taskForm.querySelector('button'); // assuming this is the 'Add Task' button
 
-    // Toggle user menu
-    const userIcon = document.querySelector('.user-icon');
-    const userMenu = document.getElementById('userMenu');
-
-    userIcon.addEventListener('click', (e) => {
-      e.stopPropagation();
-      userMenu.classList.toggle('show');
+    // Show/hide form when clicking "Create Task"
+    createBtn.addEventListener('click', () => {
+      taskForm.classList.toggle('show');
     });
 
-    // Close menu if click outside
-    document.addEventListener('click', () => {
-      userMenu.classList.remove('show');
+    // Collapse form after adding task
+    addTaskBtn.addEventListener('click', (e) => {
+      e.preventDefault(); // prevent default form submission
+      // You can add your task creation logic here
+
+      // Hide the form
+      taskForm.classList.remove('show');
     });
+
   </script>
+
 
 </body>
 </html>

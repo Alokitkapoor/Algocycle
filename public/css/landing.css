@@ -21,7 +21,7 @@ body::-webkit-scrollbar {
 } */
 
 body {
-  background-color: #1f1f1f; /* Dark background for entire page */
+  background-color: #1d1e23; /* Dark background for entire page */
   color: #e0e0e0; /* Light grey text */
   font-family: 'Segoe UI', sans-serif;
 }
@@ -80,15 +80,15 @@ body {
   background:
     repeating-linear-gradient(
       0deg,
-      #111111 0px,
-      #111111 1px,
+      #3240597f 0px,
+      #3240597f 1px,
       transparent 1px,
       transparent 20px
     ),
     repeating-linear-gradient(
       90deg,
-      #111111 0px,
-      #111111 1px,
+      #3240597f 0px,
+      #3240597f 1px,
       transparent 1px,
       transparent 20px
     );
@@ -237,7 +237,7 @@ body.dark-mode {
   width: 10vw; 
   margin-top: 10%; 
   margin-bottom: 10%; 
-  padding: 3vh;               /* responsive size */
+  padding: 4vh;               /* responsive size */
   height: auto;
   /* filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.9));  */
   animation: pulse 3.5s infinite ease-in-out;
@@ -276,11 +276,11 @@ body.dark-mode {
 }
 
 .hero2{
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 6vw;
-  font-weight: 500;
-  color: wheat;
-  letter-spacing: 0.3vh;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 5vw;
+  /* font-weight:bold; */
+  color: rgb(255, 255, 255);
+  letter-spacing: 0.6vh;
   /* background-image: linear-gradient(135deg, #00a9f7 0%, #19cfba 30%, #37eac0f0  90%); */
 
   /* background-image: linear-gradient(
@@ -298,7 +298,7 @@ body.dark-mode {
 
 /* Main hero line */
 .hero-title {
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   font-size: 3vw;  /* responsive */
   font-weight: 500;
   letter-spacing: 0.3vh;
@@ -315,7 +315,7 @@ body.dark-mode {
 
 /* Subtitle */
 .hero-subtitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   font-size: 1.3vw; /* responsive */
   color: #e0e0e0;
   text-align: center;
@@ -324,7 +324,7 @@ body.dark-mode {
 }
 
 .btn-light{
-  background-color: wheat;
+  background-color: rgb(246, 233, 207);
 }
 
 
@@ -452,7 +452,7 @@ body.dark-mode {
 
 .signin-form .btn {
   width: 40%;
-  background: wheat;
+  background: rgb(246, 233, 207);
   border: none;
   color: rgb(0, 0, 0);
   padding: 0.5rem;
@@ -493,7 +493,7 @@ body.dark-mode {
 
 .search-btn {
   border: none;
-  background: #525252;
+  background: #ffaf40;
   color: #000000;
   padding: 0 15px;
   height: 100%;
@@ -664,13 +664,17 @@ body.dark-mode {
   }
 }
 
+.btn-light {
+    background-color: #ffffff;
+    border: 0;
+}
 
 #signInHero{
     padding: 10px 20px;
     color: #ffffff;
     position: relative;
     border-radius: 8px;
-    background-color: rgb(70, 70, 70);
+    background-color: #152a4c;
     /* background-image: linear-gradient(135deg, #6affd2d6 0%, #5bd2b6d1 50%, #ffb367 100%); */
     /* background-image: linear-gradient(135deg, #ffaa00 100%, #ffb367 100%, #ffb367 100%); */
 
