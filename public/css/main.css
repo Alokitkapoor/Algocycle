@@ -280,7 +280,7 @@ body {
 }
 
 .right-dash{
-  height: 105vh;
+  height: 107.5vh;
   margin-top: 2vh;
   background-color: #2e3238;
   border-radius: 20px;
@@ -360,7 +360,7 @@ body {
 }
 
 .c-head{
-  height: 3%;
+  height: 4%;
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   margin-top: 1vw;
@@ -491,3 +491,55 @@ body {
 #ret{
   color: #17a94e;
 }
+
+
+/* the inseted card css */
+.task-card {
+  background-color: #232529;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  border: 1px solid #5f5f5f;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.task-card:hover {
+  transform: scale(1.03);
+}
+
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+.task-card-header h4 {
+  color: #d27c36;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+}
+.task-card-header small {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+.task-note {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #dcdcdc;
+}
+
+.task-card button{
+  /* background-color: rgb(56, 179, 146); */
+  background: transparent;
+  padding: 0.3vw;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  color: #17a94e;
+  font-size: small;
+  border-radius: 5px;
+  margin-left: 85%;
+  border: none;
+  border: 1px solid #17a94e;
+} 
