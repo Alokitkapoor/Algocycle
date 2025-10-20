@@ -279,12 +279,59 @@ body {
   width: 100%;
 }
 
+.right-dash{
+  height: 105vh;
+  margin-top: 2vh;
+  background-color: #2e3238;
+  border-radius: 20px;
+}
+
 /* Right section placeholder for now */
 .right-dash .stack {
   background: #222;
-  height: 80vh;
-  border-radius: 1rem;
+  height: 75vh;
+  padding: 1vw;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  display:flex;
+  flex-direction: column;
+}
+
+.right-dash .topped {
+  text-align: center;
+  height: 20vh;
+  margin-bottom: 1rem;
+  color: #ffae00;
+  background: linear-gradient(135deg, #2d2f36, #1f2124);  height: 10vh;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.245);
+}
+
+.stack {
+  overflow-y: auto; /* vertical scroll inside */
+  overflow-x: hidden;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  background: #fff;
+  scroll-behavior: smooth; /* smooth scrolling */
+}
+
+.stack::-webkit-scrollbar {
+  width: 8px;
+}
+
+.stack::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+.stack::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
+
+.stack::-webkit-scrollbar-thumb:hover {
+  background: #666;
 }
 
 
@@ -340,7 +387,7 @@ body {
 }
 
 .task-header button {
-  background: #4A90E2;
+  background: #2a67b1;
   color: white;
   border: none;
   padding: 0.6rem 1rem;
@@ -405,7 +452,7 @@ body {
 }
 
 .task-form button {
-  background: #4A90E2;
+  background: #2a67b1;
   color: white;
   border: none;
   padding: 0.8rem;
