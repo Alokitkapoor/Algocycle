@@ -83,14 +83,14 @@ body {
       #3240597f 0px,
       #3240597f 1px,
       transparent 1px,
-      transparent 20px
+      transparent 30px
     ),
     repeating-linear-gradient(
       90deg,
       #3240597f 0px,
       #3240597f 1px,
       transparent 1px,
-      transparent 20px
+      transparent 30px
     );
 
     overflow: hidden;
@@ -276,6 +276,7 @@ body.dark-mode {
 }
 
 .hero2{
+  width: 100vw;
   font-family: 'Segoe UI', sans-serif;
   font-size: 5vw;
   /* font-weight:bold; */
@@ -315,12 +316,13 @@ body.dark-mode {
 
 /* Subtitle */
 .hero-subtitle {
+  width: 50%;
   font-family: 'Segoe UI', sans-serif;
   font-size: 1.3vw; /* responsive */
   color: #e0e0e0;
   text-align: center;
-  max-width: 600px;
   line-height: 1.5;
+  margin-top: 1vw;
 }
 
 .btn-light{
@@ -700,3 +702,19 @@ body.dark-mode {
     cubic-bezier(.6, .6, 0, 1);
 }
 
+.hero2{
+  margin-top: 1vw;
+}
+
+.hero2 span{
+  font-size: 4.5vw;
+  letter-spacing: 0.2vh;
+  background-color: #7f9fd6;
+  border-radius: 10px;
+  color: #121d30;
+  text-shadow: none; 
+  font-weight: bolder;
+  padding-bottom: 1vw;
+  padding-left: 3vw;
+  padding-right: 3vw;
+}
