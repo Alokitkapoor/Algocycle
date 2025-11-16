@@ -21,6 +21,7 @@ body::-webkit-scrollbar {
 } */
 
 body {
+  
   background-color: #ffffff; /* Dark background for entire page */
   color: #e0e0e0; /* Light grey text */
   font-family: 'Segoe UI', sans-serif;
