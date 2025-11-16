@@ -1,6 +1,6 @@
 /* this is bootstrap */
-@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import "node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
 body::-webkit-scrollbar {
   display: none;
@@ -25,6 +25,8 @@ body {
   color: #e0e0e0; /* Light grey text */
   font-family: 'Segoe UI', sans-serif;
 }
+
+
 
 /* Animated radial domes */
 .animated-bg {
@@ -96,7 +98,9 @@ body {
     overflow: hidden;
 }
 
-
+.trust{
+  color: white;
+}
 
 /* Canvas sprinkle if needed */
 #pixelSprinkle {

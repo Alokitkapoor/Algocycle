@@ -1,6 +1,6 @@
 /* this is bootstrap */
-@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import "node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "node_modules/bootstrap-icons/font/bootstrap-icons.css";
 
 /* font-family: 'Segoe UI', sans-serif; */
 
@@ -17,45 +17,16 @@ body {
 }
 
 /* User Menu Styling */
-.user-menu {
-  display: none;
-  background-color: #2a2a2a;
-  padding: 0.8rem 1rem;
-  border-radius: 0.6rem;
-  top: 60px;
-  right: 0;
-  min-width: 160px;
-  z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-}
 
-.user-menu p {
-  margin: 0;
-  color: #fff;
-  font-weight: 500;
-  font-size: 1rem;
-}
-
-.user-menu a {
-  display: block;
-  margin-top: 0.6rem;
-  color: #bbb;
-  text-decoration: none;
-  font-size: 0.95rem;
-}
-
-.user-menu a:hover {
-  color: #4a90e2;
-}
-
-.user-menu.show {
-  display: block;
+.show-menu {
+  display: block !important;
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 
 .navbar{
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-
 }
 
 /* Navbar */
@@ -339,11 +310,11 @@ body {
   max-height: 0;
   overflow: hidden;
   transition: max-height 2s cubic-bezier(0.25, 1, 0.3, 1);
-  /* cubic-bezier creates a natural soft easing curve */
+  
 }
 
 #createForm.show {
-  max-height: 600px; /* adjust as per your form height */
+  max-height: 600px; 
 }
 
 
@@ -406,6 +377,7 @@ body {
   display: flex;              
   flex-direction: column;
   gap: 0.8rem;
+  /* binna show class wali height */
   max-height: 0;              
   overflow: hidden;
   padding: 0;                 

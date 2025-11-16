@@ -1,6 +1,6 @@
 /* this is bootstrap */
-@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
 
 body::-webkit-scrollbar {
   display: none;
@@ -21,11 +21,20 @@ body::-webkit-scrollbar {
 } */
 
 body {
-  
-  background-color: #ffffff; /* Dark background for entire page */
-  color: #e0e0e0; /* Light grey text */
+  height: 100vh;
+  background-image: 
+    /* linear-gradient(to bottom, rgba(255, 255, 255, 0) 90%, rgb(255, 255, 255) 100%),  */
+    url('/src/assets/bgr.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: #e0e0e0;
   font-family: 'Segoe UI', sans-serif;
 }
+
+/* .root{
+  background-image: url('./assets/bgbg.jpg');
+} */
 
 /* Animated radial domes */
 .animated-bg {
@@ -81,15 +90,15 @@ body {
   background:
     repeating-linear-gradient(
       0deg,
-      #dae7ff 0px,
-      #dae7ff 1px,
+      #0000001c  0px,
+      #0000001c 1px,
       transparent 1px,
       transparent 30px
     ),
     repeating-linear-gradient(
       90deg,
-      #dae7ff 0px,
-      #dae7ff 1px,
+      #0000001c 0px,
+      #0000001c 1px,
       transparent 1px,
       transparent 30px
     );
@@ -97,7 +106,9 @@ body {
     overflow: hidden;
 }
 
-
+.trust{
+  color: black;
+}
 
 /* Canvas sprinkle if needed */
 #pixelSprinkle {
@@ -122,16 +133,19 @@ body {
 }
 
 .navbar {
-  width: 100%;
+  width: 99%;
+  height: 9vh;
   position: fixed;
-  top: 0;
+  top: 1vh;
+  margin-left: 0.5%;
   left: 0;
   z-index: 9999; 
+  border-radius: 10px;
 }
 
 .custom-navbar {
 
-  background: #1d1e23;
+  background: #101c2e;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   padding: 0.2rem 0.2rem;
 
