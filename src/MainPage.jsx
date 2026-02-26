@@ -119,37 +119,83 @@ const MainPage = () => {
 
     // 5. ----------------------------> adding to the final one
     // refer the Taskinjection.jsx component
-    const handleAddTask = () => {
-        const form = document.getElementById("taskForm");
+    const [tasks, setTasks] = React.useState([]);
 
+    const fetchAndRenderTasks = async () => {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+
+        try {
+            const res = await fetch("http://localhost:5000/api/problems", {
+                headers: { "Authorization": `Bearer ${token}` }
+            });
+            if (!res.ok) throw new Error("Failed to fetch");
+            const tasks = await res.json();
+            setTasks(tasks);
+        } catch (err) {
+            console.error(err);
+            // Only alert once, not on every failed fetch
+            // alert("Failed to fetch tasks");
+        }
+    };
+
+    const handleAddTask = async () => {
         const title = document.getElementById("taskTitle").value.trim();
         const notes = document.getElementById("taskNotes").value.trim();
         const deadline = document.getElementById("taskDeadline").value;
 
         if (!title || !deadline) {
-        alert("Please enter both title and deadline!");
-        return;
+            alert("Please enter both title and deadline!");
+            return;
         }
 
-        // existing taske extract karo 
-        const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-        // new task banna
-        const nn = {title , notes , deadline};
-        // new task add kr
-        tasks.push(nn);
-        // wapis local storage mai add krde 
-        localStorage.setItem("tasks", JSON.stringify(tasks));
+        const token = localStorage.getItem("token");
+        try {
+            const res = await fetch("http://localhost:5000/api/problems", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ title, description: notes, scheduledTime: deadline })
+            });
 
-        alert("Task recorded successfully!");
+            const data = await res.json();
+            if (!res.ok) return alert(data.message || "Task creation failed");
 
-        document.getElementById("taskTitle").value = "";
-        document.getElementById("taskNotes").value = "";
-        document.getElementById("taskDeadline").value = "";
+            alert("Task recorded successfully!");
+            document.getElementById("taskTitle").value = "";
+            document.getElementById("taskNotes").value = "";
+            document.getElementById("taskDeadline").value = "";
 
-        // wapis scroll up
-        const del = document.querySelector('.task-form');
-        del.classList.remove('show');
+            const del = document.querySelector('.task-form');
+            del.classList.remove('show');
+
+            // refresh the stack dynamically
+            fetchAndRenderTasks();
+
+        } catch (err) {
+            console.error(err);
+            alert("Server error while adding task");
+        }
     };
+
+    // polling every 10 sec
+    // setInterval(fetchAndRenderTasks, 10000);
+
+    React.useEffect(() => {
+      fetchAndRenderTasks();
+
+      const curr = JSON.parse(localStorage.getItem('user'));
+      if(curr) setlcname(curr.username);
+
+        // setInterval for polling
+      const interval = setInterval(fetchAndRenderTasks, 10000);
+
+        // cleanup on unmount
+      return () => clearInterval(interval);
+
+    }, []);
 
   return (
     <>
@@ -337,7 +383,7 @@ const MainPage = () => {
             <div className="task-form" id="taskForm">
               <input type="text" id="taskTitle" placeholder="Task Title" />
               <input type="text" id="taskNotes" placeholder="Notes (optional)" />
-              <input type="text" id="taskDeadline" placeholder="YYYY-MM-DDTHH:MM"/>
+              <input type="datetime-local" id="taskDeadline" placeholder="YYYY-MM-DDTHH:MM"/>
               <button id="addTaskBtn" onClick={handleAddTask}>Add Task</button>
             </div>
           </div>
@@ -415,7 +461,7 @@ const MainPage = () => {
 
           <div className="stack" id="taskstack">
             {/* JS will inject cards here later */}
-            <DynamicCards/>
+            <DynamicCards tasks={tasks} fetchAndRenderTasks={fetchAndRenderTasks} />
             {/* this above component is in other file */}
           </div>
         </div>

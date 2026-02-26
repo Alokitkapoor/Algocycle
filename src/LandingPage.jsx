@@ -4,6 +4,11 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { useNavigate } from "react-router-dom";
 // import "./css/landingwhite.css"; 
 // import "./css/landingdark.css";
+import About from "./About"; 
+import './About.css';
+
+import Footer from "./Footer"
+import "./Footer.css"
 
 // Note -> Do not write import up here it will directly override if you want
 // to load css dynamically  
@@ -30,17 +35,14 @@ const LandingPage = () => {
 
   // theme toggle logic ------------------->>
   const toggleTheme = () => {
-    const curr = theme;
-    if(curr === "w"){
-      setTheme("d"); // set theme is the function
-    }
-    else setTheme("w");
+    const nextTheme = theme === "w" ? "d" : "w"; // fixed logic
+    setTheme(nextTheme); // set theme is the function
 
     const link = document.getElementById("theme");
     if (link) {
       link.setAttribute(
         "href",
-        theme === "w" ? "/css/landingdark.css" : "/css/landingwhite.css"
+        nextTheme === "w" ? "/css/landingwhite.css" : "/css/landingdark.css"
       );
     }
   };
@@ -48,41 +50,75 @@ const LandingPage = () => {
   // logic so that both the overlays do not appear simultaneiousl
 
   // Sign In submit logic ------------------------------>
-  const handleSignIn = (e) => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
-    localStorage.clear();
-    const mail = e.target.eml.value;
-    const namm = e.target.unm.value;
-    const paww = e.target.pwd.value;
 
+    const email = e.target.eml.value;
+    const username = e.target.unm.value;
+    const password = e.target.pwd.value;
 
-    if (!mail || !namm || !paww) return alert("Please enter all details");
+    if (!email || !username || !password) {
+      alert("Please enter all details");
+      return;
+    }
 
-    const user = { email: mail, username: namm, password: paww };
-    localStorage.setItem("user", JSON.stringify(user));
-    localStorage.setItem("username", namm);
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, username, password }),
+      });
 
-    alert("Registered Successfully");
-    
-    setOverlayOpen(false);
-    navigate("/main");
+      const data = await res.json();
+
+      if (!res.ok) {
+        // If the backend returns an error
+        alert(data.message || "Signup failed");
+        return;
+      }
+
+      // Save token and username for session
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("username", data.user.username);
+
+      alert("Registered Successfully");
+      setOverlayOpen(false); // close overlay
+      navigate("/main");     // go to main dashboard
+
+    } catch (err) {
+      // Now err is correctly defined
+      alert("Server error. Please try again later.");
+      console.error("Signup Error:", err);
+    }
   };
 
   // Login submit logic --------------------------------->
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const unm = e.target.username.value;
-    const pwd = e.target.password.value;
-    const avail = JSON.parse(localStorage.getItem("user"));
+    const username = e.target.username.value;
+    const password = e.target.password.value;
 
-    if (!avail) return alert("User does not exist");
-    if (unm === avail.username && pwd === avail.password) {
-      alert(`Welcome back ${avail.username}`);
-      localStorage.setItem("username", avail.username);
+    if (!username || !password) return alert("Please enter all details");
+
+    try {
+      const res = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: username, password }), // backend login uses email
+      });
+      const data = await res.json();
+      if (!res.ok) return alert(data.message || "Login failed");
+
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("username", data.user.username);
+
+      alert(`Welcome back ${data.user.username}`);
       setLoginOpen(false);
       navigate("/main");
-    } 
-    else alert("Invalid details entered");
+    } catch (err) {
+      alert("Server error");
+      console.error(err);
+    }
   };
 
   return (
@@ -256,6 +292,9 @@ const LandingPage = () => {
           </div>
         </div>
       )}
+
+      <About />
+      <Footer />
     </>
   );
 }

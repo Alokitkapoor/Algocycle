@@ -1,116 +1,103 @@
-
 import React, { useCallback, useEffect, useState } from "react";
 
-const Cds = () => {
-  // 1. -----------------------------------------> fetch and filter the tasks you want to show 
-  const[toshow, settoshow] = useState([]);
+// Cds Component → Responsible for displaying **expired tasks**
+// Tasks that are past their scheduled time appear here
+// Users can mark them "Done" which deletes them from backend and refreshes UI
+const Cds = ({ tasks, fetchAndRenderTasks }) => {
+  // 1. Local state to store **expired tasks** for rendering
+  const [toshow, settoshow] = useState([]);
 
-  // without useCallback ****
-  // At every re-render a NEW function is generated,
-  // but the setInterval keeps using the OLD un-updated copy.
-
-  // with useCallback ****
-  // React does NOT generate a new function every render.
-  // It reuses the SAME function unless one of its dependencies changes. 
-
+  // 2. Function to filter tasks that are expired
+  // useCallback ensures the function reference is stable across re-renders
   const loadexp = useCallback(() => {
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const now = new Date();
+    const now = new Date(); // current time
 
-    // const finalll = [];
-    // tasks.forEach(ele => {
-    //   if(new Date(ele.deadline) <= now){
-    //     finalll.push(ele);
-    //   }
-    // });
+    // Filter tasks whose deadline (scheduledTime) has passed
+    const expiredTasks = tasks.filter(t => new Date(t.scheduledTime) <= now);
 
-    // a better way to do what you did above is 
-    const finalll = tasks.filter(ele => new Date(ele.deadline) <= now);
+    // Update local state → triggers re-render of the component
+    settoshow(expiredTasks);
+  }, [tasks]); // dependency: whenever `tasks` prop changes, re-run
 
-    // *** Important -> this line is triggering the Re-rendering 
-    settoshow(finalll);
+  // 3. Handle removing a task when "Done" is clicked
+  const handleRemove = async (index) => {
+    const taskToRemove = toshow[index]; // get the specific task to delete
 
-    // Now "toshow", stores what we need to inject
-  }, []);
+    try {
+      const token = localStorage.getItem("token");
 
-  // 2. -----------------------------------------> Remove task when Done clicked
-  const handleRemove = (indtorem) => {
-    // get the original 
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      // API call to delete task from backend
+      const res = await fetch(
+        `http://localhost:5000/api/problems/${taskToRemove._id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        }
+      );
 
-    // get the task from the already expired ones 
-    const now = new Date();
-    const expexp = tasks.filter(e => new Date(e.deadline) <= now);
+      if (!res.ok) throw new Error("Failed to remove task");
 
-    // iterate it and remove the one you wanted 
-    const updated = [];
-    tasks.forEach(ele => {
-      if(!(ele.title === expexp[indtorem].title && ele.deadline === expexp[indtorem].deadline)){
-        updated.push(ele);
-      }
-    })
+      // Refresh tasks in MainPage → keeps UI in sync
+      fetchAndRenderTasks();
 
-    // updated now contain all the task (expired + non-expired)
-    // but does not contain the one you want to remove 
-    // save the local storage 
-    localStorage.setItem('tasks', JSON.stringify(updated));
-
-    // rerender the updated one 
-    loadexp();
+    } catch (err) {
+      console.error(err);
+      alert("Error removing task");
+    }
   };
 
-  // Load tasks initially + every 10 seconds
-  // this is polling 
-  // when you check something after a specific time interval
-
-  // React runs the effect after painting the UI
+  // 4. useEffect to load expired tasks whenever `tasks` prop changes
+  // Also works like polling if `tasks` are refreshed externally
   useEffect(() => {
     loadexp();
-    // the timer runs asynchronously on the browser event loop; 
-    // each tick calls loadexp independently of React render cycles.
-    const interval = setInterval(loadexp, 10000);
-
-    return () => clearInterval(interval);
-  }, []);
+  }, [loadexp]); // only re-run if loadexp reference changes
 
   return (
     <>
+      {/* 5. Show empty message if no expired tasks */}
       {toshow.length === 0 && (
-        // if you want to render multiple comps then wrap it into react fragment <> ... </>
         <>
-          <img src="src/assets/empty-box.png" style={{
-            padding: "3vw",
-            marginTop: "3vw",
-            opacity: "0.75"
-          }}></img>
-
-          <p style={{
-            textAlign: "center",
-            marginTop: "-2vw",
-            color: "#7289a9"
-          }}> Nothing to address</p>
+          <img
+            src="src/assets/empty-box.png"
+            style={{
+              padding: "3vw",
+              marginTop: "3vw",
+              opacity: "0.75"
+            }}
+          />
+          <p
+            style={{
+              textAlign: "center",
+              marginTop: "-2vw",
+              color: "#7289a9"
+            }}
+          >
+            Nothing to address
+          </p>
         </>
       )}
 
+      {/* 6. Render all expired tasks */}
       {toshow.map((task, index) => (
         <div key={index} className="task-card">
-
+          {/* Task Header: title + deadline */}
           <div className="task-card-header">
             <h4>{task.title}</h4>
-            <small>{new Date(task.deadline).toLocaleString()}</small>
+            <small>{new Date(task.scheduledTime).toLocaleString()}</small>
           </div>
 
-          <p className="task-note">
-            {task.notes || "No additional notes."}
-          </p>
+          {/* Task Notes */}
+          <p className="task-note">{task.description || "No additional notes."}</p>
 
+          {/* Remove button */}
           <button
             className="remove-task-btn"
             onClick={() => handleRemove(index)}
           >
             Done
           </button>
-
         </div>
       ))}
     </>

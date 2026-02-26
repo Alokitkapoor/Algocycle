@@ -71,7 +71,7 @@ body {
 } */
 
 /* Grid lines above dots */
-.grid-layer {
+/* .grid-layer {
   position: fixed;
   top: 0;
   left: 0;
@@ -96,7 +96,7 @@ body {
     );
 
     overflow: hidden;
-}
+} */
 
 .trust{
   color: white;
